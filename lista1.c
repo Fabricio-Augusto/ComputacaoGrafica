@@ -10,12 +10,6 @@ Movimento do mouse: escreva no terminal a posição do mouse.
 #include <GL/glew.h>     
 #include <GL/freeglut.h>
 
-unsigned int vetor[26];
-char alfabeto [27] = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p',
-'q','r','s','t','u','v','w','x','y','z'};
-//letra 'a' na tabela ASC2
-unsigned int letra = 97;
-
 void desenhaMinhaCena() {
     glClear(GL_COLOR_BUFFER_BIT);
     glFlush();
@@ -51,16 +45,7 @@ void cliqueMouse(int button, int state, int x, int y){
 
 void teclaPressionada(unsigned int key, int x, int y) {
     
-    int i;
-    for(i=0; i<27; i++){
-        if(key == vetor[i])
-            break;
-    }
-    if(i<=25){
-        printf("Tecla Pressionada: '%c'", alfabeto[i]);
-    }else{
-        printf("Tecla Pressionada não registrada");
-    }
+    printf("Tecla Pressionada: '%u'", key);
     printf(" e a posição do mouse x = %d, e y = %d\n", x, y);
 
 }
@@ -78,11 +63,7 @@ void redimensionaTela(int width, int height) {
 }
 
 int main(int argc, char** argv) {
-    //inicializa o vetor de tabelas ASC2 começa no 97 que é a letra 'a'
-    for(int i=0; i<26; i++){
-        vetor[i] = letra;
-        letra ++;
-    }   
+  
     glutInit(&argc, argv);
     glutInitContextVersion(1, 1);
     glutInitContextProfile(GLUT_COMPATIBILITY_PROFILE);
